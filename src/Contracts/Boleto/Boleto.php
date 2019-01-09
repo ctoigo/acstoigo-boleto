@@ -30,13 +30,6 @@ interface Boleto {
     public function renderPDF($print = false);
 
     /**
-     * Render PDF.
-     *
-     * @return mixed
-     */
-    public function renderHTML();
-
-    /**
      * Return boleto as a Array.
      *
      * @return array
