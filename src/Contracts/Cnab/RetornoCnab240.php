@@ -1,9 +1,9 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Contracts\Cnab;
+namespace ACSToigo\Contracts\Cnab;
 
-interface RetornoCnab240 extends Cnab
-{
+interface RetornoCnab240 extends Cnab {
+
     /**
      * @return mixed
      */

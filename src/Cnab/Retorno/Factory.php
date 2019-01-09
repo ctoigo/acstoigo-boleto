@@ -1,20 +1,20 @@
 <?php
-namespace Newerton\Yii2Boleto\Cnab\Retorno;
 
-use Newerton\Yii2Boleto\Contracts\Boleto\Boleto as BoletoContract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno;
-use Newerton\Yii2Boleto\Util;
+namespace ACSToigo\Cnab\Retorno;
 
-class Factory
-{
+use ACSToigo\Contracts\Boleto\Boleto as BoletoContract;
+use ACSToigo\Contracts\Cnab\Retorno;
+use ACSToigo\Util;
+
+class Factory {
+
     /**
      * @param $file
      *
      * @return Retorno
      * @throws \Exception
      */
-    public static function make($file)
-    {
+    public static function make($file) {
         if (!$file_content = Util::file2array($file)) {
             throw new \Exception("Arquivo: não existe");
         }
@@ -33,14 +33,10 @@ class Factory
      * @return mixed
      * @throws \Exception
      */
-    private static function getBancoClass($file_content)
-    {
+    private static function getBancoClass($file_content) {
         $banco = '';
         $namespace = '';
-        if (Util::isCnab400($file_content)) {
-            $banco = substr($file_content[0], 76, 3);
-            $namespace = __NAMESPACE__ . '\\Cnab400\\';
-        } elseif (Util::isCnab240($file_content)) {
+        if (Util::isCnab240($file_content)) {
             $banco = substr($file_content[0], 0, 3);
             $namespace = __NAMESPACE__ . '\\Cnab240\\';
         }
@@ -65,4 +61,5 @@ class Factory
 
         throw new \Exception("Banco: $banco, inválido");
     }
+
 }

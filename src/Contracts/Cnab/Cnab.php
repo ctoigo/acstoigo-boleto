@@ -1,6 +1,7 @@
 <?php
-namespace Newerton\Yii2Boleto\Contracts\Cnab;
 
-interface Cnab
-{
+namespace ACSToigo\Contracts\Cnab;
+
+interface Cnab {
+    
 }

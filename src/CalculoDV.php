@@ -1,52 +1,47 @@
 <?php
-namespace Newerton\Yii2Boleto;
 
-class CalculoDV
-{
+namespace ACSToigo;
 
+class CalculoDV {
     /*
-    |--------------------------------------------------------------------------
-    | 001 - Banco do Brasil
-    |--------------------------------------------------------------------------
-    */
-    public static function bbAgencia($agencia)
-    {
+      |--------------------------------------------------------------------------
+      | 001 - Banco do Brasil
+      |--------------------------------------------------------------------------
+     */
+
+    public static function bbAgencia($agencia) {
         return Util::modulo11($agencia, 2, 9, 0, 'X');
     }
 
-    public static function bbContaCorrente($contaCorrente)
-    {
+    public static function bbContaCorrente($contaCorrente) {
         return Util::modulo11($contaCorrente, 2, 9, 0, 'X');
     }
 
-    public static function bbNossoNumero($nossoNumero)
-    {
+    public static function bbNossoNumero($nossoNumero) {
         return strlen($nossoNumero) >= 17 ? null : Util::modulo11($nossoNumero);
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 004 - Banco do Nordeste
-    |--------------------------------------------------------------------------
-    */
-    public static function bnbAgencia($agencia)
-    {
+      |--------------------------------------------------------------------------
+      | 004 - Banco do Nordeste
+      |--------------------------------------------------------------------------
+     */
+
+    public static function bnbAgencia($agencia) {
         $dv = Util::modulo11($agencia, 2, 9, 0);
         return $dv == 1 ? 'X' : $dv;
     }
 
-    public static function bnbContaCorrente($agencia, $conta)
-    {
+    public static function bnbContaCorrente($agencia, $conta) {
         $conta = sprintf('%03s%09s', self::bnbAgenciaReal($agencia), $conta);
         $dv = Util::modulo11($conta, 2, 9, 1);
-        if($dv > 1) {
-            return 11-$dv;
+        if ($dv > 1) {
+            return 11 - $dv;
         }
         return 0;
     }
 
-    public static function bnbNossoNumero($nossoNumero)
-    {
+    public static function bnbNossoNumero($nossoNumero) {
         return Util::modulo11(Util::numberFormatGeral($nossoNumero, 7));
     }
 
@@ -77,37 +72,36 @@ class CalculoDV
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 033 - Santander
-    |--------------------------------------------------------------------------
-    */
-    public static function santanderContaCorrente($agencia, $contaCorrente)
-    {
+      |--------------------------------------------------------------------------
+      | 033 - Santander
+      |--------------------------------------------------------------------------
+     */
+
+    public static function santanderContaCorrente($agencia, $contaCorrente) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . '00'
-            . Util::numberFormatGeral($contaCorrente, 8);
+                . '00'
+                . Util::numberFormatGeral($contaCorrente, 8);
         $chars = array_reverse(str_split($n, 1));
         $sums = array_reverse(str_split('97310097131973', 1));
         $sum = 0;
         foreach ($chars as $i => $char) {
-            $sum += substr($char*$sums[$i], -1);
+            $sum += substr($char * $sums[$i], -1);
         }
         $unidade = substr($sum, -1);
         return $unidade == 0 ? $unidade : 10 - $unidade;
     }
 
-    public static function santanderNossoNumero($nossoNumero)
-    {
+    public static function santanderNossoNumero($nossoNumero) {
         return Util::modulo11($nossoNumero);
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 041 - Banrisul
-    |--------------------------------------------------------------------------
-    */
-    public static function banrisulAgencia($agencia)
-    {
+      |--------------------------------------------------------------------------
+      | 041 - Banrisul
+      |--------------------------------------------------------------------------
+     */
+
+    public static function banrisulAgencia($agencia) {
         $newDv1 = $dv1 = Util::modulo10($agencia);
         $dv2 = Util::modulo11($agencia . $dv1, 2, 7);
 
@@ -123,20 +117,19 @@ class CalculoDV
             $dv2 = Util::modulo11($agencia . $dv1, 2, 7);
         }
 
-        return $dv1.$dv2;
+        return $dv1 . $dv2;
     }
 
-    public static function banrisulContaCorrente($contaCorrente)
-    {
+    public static function banrisulContaCorrente($contaCorrente) {
         $chars = array_reverse(str_split($contaCorrente, 1));
         $sums = str_split('234567423', 1);
 
         $sum = 0;
         foreach ($chars as $i => $char) {
-            $sum += $char*$sums[$i];
+            $sum += $char * $sums[$i];
         }
 
-        $resto = $sum%11;
+        $resto = $sum % 11;
 
         if ($resto == 0) {
             return $resto;
@@ -149,13 +142,11 @@ class CalculoDV
         return 11 - $resto;
     }
 
-    public static function banrisulNossoNumero($nossoNumero)
-    {
+    public static function banrisulNossoNumero($nossoNumero) {
         return self::banrisulDuploDigito($nossoNumero);
     }
 
-    public static function banrisulDuploDigito($campo)
-    {
+    public static function banrisulDuploDigito($campo) {
         $dv1 = Util::modulo10($campo);
         $dv2 = Util::modulo11($campo . $dv1, 2, 7, 0, 10);
         if ($dv2 == 10) {
@@ -169,101 +160,96 @@ class CalculoDV
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 104 - Caixa Econômica Federal
-    |--------------------------------------------------------------------------
-    */
-    public static function cefContaCorrente($agencia, $contaCorrente)
-    {
+      |--------------------------------------------------------------------------
+      | 104 - Caixa Econômica Federal
+      |--------------------------------------------------------------------------
+     */
+
+    public static function cefContaCorrente($agencia, $contaCorrente) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . Util::numberFormatGeral($contaCorrente, 11);
+                . Util::numberFormatGeral($contaCorrente, 11);
         return Util::modulo11($n);
     }
 
-    public static function cefNossoNumero($nossoNumero)
-    {
+    public static function cefNossoNumero($nossoNumero) {
         return Util::modulo11($nossoNumero);
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 237 - Bradesco
-    |--------------------------------------------------------------------------
-    */
-    public static function bradescoAgencia($agencia)
-    {
+      |--------------------------------------------------------------------------
+      | 237 - Bradesco
+      |--------------------------------------------------------------------------
+     */
+
+    public static function bradescoAgencia($agencia) {
         $dv = Util::modulo11($agencia, 2, 9, 0, 'P');
         return $dv == 11 ? 0 : $dv;
     }
-    
-    public static function bradescoContaCorrente($contaCorrente)
-    {
+
+    public static function bradescoContaCorrente($contaCorrente) {
         return Util::modulo11($contaCorrente, 2, 9, 0, 'P');
     }
 
-    public static function bradescoNossoNumero($carteira, $nossoNumero)
-    {
+    public static function bradescoNossoNumero($carteira, $nossoNumero) {
         return Util::modulo11($carteira . $nossoNumero, 2, 7, 0, 'P');
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 341 - Itau
-    |--------------------------------------------------------------------------
-    */
-    public static function itauContaCorrente($agencia, $contaCorrente)
-    {
+      |--------------------------------------------------------------------------
+      | 341 - Itau
+      |--------------------------------------------------------------------------
+     */
+
+    public static function itauContaCorrente($agencia, $contaCorrente) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . Util::numberFormatGeral($contaCorrente, 5);
+                . Util::numberFormatGeral($contaCorrente, 5);
         return Util::modulo10($n);
     }
 
-    public static function itauNossoNumero($agencia, $conta, $carteira, $numero_boleto)
-    {
+    public static function itauNossoNumero($agencia, $conta, $carteira, $numero_boleto) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . Util::numberFormatGeral($conta, 5)
-            . Util::numberFormatGeral($carteira, 3)
-            . Util::numberFormatGeral($numero_boleto, 8);
+                . Util::numberFormatGeral($conta, 5)
+                . Util::numberFormatGeral($carteira, 3)
+                . Util::numberFormatGeral($numero_boleto, 8);
         return Util::modulo10($n);
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 748 - Sicredi - Falta o calculo agencia e conta
-    |--------------------------------------------------------------------------
-    */
-    public static function sicrediNossoNumero($agencia, $posto, $conta, $ano, $byte, $numero_boleto)
-    {
+      |--------------------------------------------------------------------------
+      | 748 - Sicredi - Falta o calculo agencia e conta
+      |--------------------------------------------------------------------------
+     */
+
+    public static function sicrediNossoNumero($agencia, $posto, $conta, $ano, $byte, $numero_boleto) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . Util::numberFormatGeral($posto, 2)
-            . Util::numberFormatGeral($conta, 5)
-            . Util::numberFormatGeral($ano, 2)
-            . Util::numberFormatGeral($byte, 1)
-            . Util::numberFormatGeral($numero_boleto, 5);
-        return  Util::modulo11($n);
+                . Util::numberFormatGeral($posto, 2)
+                . Util::numberFormatGeral($conta, 5)
+                . Util::numberFormatGeral($ano, 2)
+                . Util::numberFormatGeral($byte, 1)
+                . Util::numberFormatGeral($numero_boleto, 5);
+        return Util::modulo11($n);
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | 756 - Bancoob - Falta o calculo conta e confirmar agencia
-    |--------------------------------------------------------------------------
-    */
-    public static function bancoobAgencia($agencia)
-    {
+      |--------------------------------------------------------------------------
+      | 756 - Bancoob - Falta o calculo conta e confirmar agencia
+      |--------------------------------------------------------------------------
+     */
+
+    public static function bancoobAgencia($agencia) {
         return Util::modulo11($agencia);
     }
 
-    public static function bancoobNossoNumero($agencia, $convenio, $numero_boleto)
-    {
+    public static function bancoobNossoNumero($agencia, $convenio, $numero_boleto) {
         $n = Util::numberFormatGeral($agencia, 4)
-            . Util::numberFormatGeral($convenio, 10)
-            . Util::numberFormatGeral($numero_boleto, 7);
+                . Util::numberFormatGeral($convenio, 10)
+                . Util::numberFormatGeral($numero_boleto, 7);
 
         $chars = str_split($n, 1);
         $sums = str_split('3197319731973197319731973197', 1);
         $sum = 0;
         foreach ($chars as $i => $char) {
-            $sum += $char*$sums[$i];
+            $sum += $char * $sums[$i];
         }
         $resto = $sum % 11;
         $dv = 0;
@@ -271,6 +257,7 @@ class CalculoDV
         if (($resto != 0) && ($resto != 1)) {
             $dv = 11 - $resto;
         }
-        return  $dv;
+        return $dv;
     }
+
 }

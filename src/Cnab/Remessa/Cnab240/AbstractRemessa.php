@@ -1,14 +1,15 @@
 <?php
-namespace Newerton\Yii2Boleto\Cnab\Remessa\Cnab240;
 
-use Newerton\Yii2Boleto\Cnab\Remessa\AbstractRemessa as AbstractRemessaGeneric;
+namespace ACSToigo\Cnab\Remessa\Cnab240;
+
+use ACSToigo\Cnab\Remessa\AbstractRemessa as AbstractRemessaGeneric;
 
 /**
  * Class AbstractRemessa
- * @package Newerton\Yii2Boleto\Cnab\Remessa\Cnab240
+ * @package ACSToigo\Cnab\Remessa\Cnab240
  */
-abstract class AbstractRemessa extends AbstractRemessaGeneric
-{
+abstract class AbstractRemessa extends AbstractRemessaGeneric {
+
     /**
      * @var int
      */
@@ -34,7 +35,6 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
      */
     abstract protected function headerLote();
 
-
     /**
      * Função que gera o trailer (footer) do arquivo.
      *
@@ -47,8 +47,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
      *
      * @return mixed
      */
-    protected function getHeaderLote()
-    {
+    protected function getHeaderLote() {
         return $this->aRegistros[self::HEADER_LOTE];
     }
 
@@ -57,16 +56,14 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
      *
      * @return mixed
      */
-    protected function getTrailerLote()
-    {
+    protected function getTrailerLote() {
         return $this->aRegistros[self::TRAILER_LOTE];
     }
 
     /**
      * Inicia a edição do header
      */
-    protected function iniciaHeader()
-    {
+    protected function iniciaHeader() {
         $this->aRegistros[self::HEADER] = array_fill(0, 240, ' ');
         $this->atual = &$this->aRegistros[self::HEADER];
     }
@@ -74,8 +71,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
     /**
      * Inicia a edição do header
      */
-    protected function iniciaHeaderLote()
-    {
+    protected function iniciaHeaderLote() {
         $this->aRegistros[self::HEADER_LOTE] = array_fill(0, 240, ' ');
         $this->atual = &$this->aRegistros[self::HEADER_LOTE];
     }
@@ -83,8 +79,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
     /**
      * Inicia a edição do trailer (footer).
      */
-    protected function iniciaTrailerLote()
-    {
+    protected function iniciaTrailerLote() {
         $this->aRegistros[self::TRAILER_LOTE] = array_fill(0, 240, ' ');
         $this->atual = &$this->aRegistros[self::TRAILER_LOTE];
     }
@@ -92,8 +87,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
     /**
      * Inicia a edição do trailer (footer).
      */
-    protected function iniciaTrailer()
-    {
+    protected function iniciaTrailer() {
         $this->aRegistros[self::TRAILER] = array_fill(0, 240, ' ');
         $this->atual = &$this->aRegistros[self::TRAILER];
     }
@@ -101,8 +95,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
     /**
      * Inicia uma nova linha de detalhe e marca com a atual de edição
      */
-    protected function iniciaDetalhe()
-    {
+    protected function iniciaDetalhe() {
         $this->iRegistros++;
         $this->aRegistros[self::DETALHE][$this->iRegistros] = array_fill(0, 240, ' ');
         $this->atual = &$this->aRegistros[self::DETALHE][$this->iRegistros];
@@ -114,8 +107,7 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
      * @return string
      * @throws \Exception
      */
-    public function gerar()
-    {
+    public function gerar() {
         if (!$this->isValid()) {
             throw new \Exception('Campos requeridos pelo banco, aparentam estar ausentes');
         }
@@ -143,4 +135,5 @@ abstract class AbstractRemessa extends AbstractRemessaGeneric
 
         return $stringRemessa;
     }
+
 }

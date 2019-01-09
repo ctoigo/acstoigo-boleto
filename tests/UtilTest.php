@@ -1,20 +1,18 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Tests;
+namespace ACSToigo\Tests;
 
-use Newerton\Yii2Boleto\Pessoa;
-use Newerton\Yii2Boleto\Util;
+use ACSToigo\Util;
 
-class UtilTest extends TestCase
-{
+class UtilTest extends TestCase {
 
-    public function testIsHeaderRetorno(){
+    public function testIsHeaderRetorno() {
         $this->assertFalse(Util::isHeaderRetorno(''));
         $this->assertFalse(Util::isHeaderRetorno(str_pad('', 400, ' ')));
         $this->assertFalse(Util::isHeaderRetorno(str_pad('', 240, ' ')));
     }
 
-    public function testFuncoesString(){
+    public function testFuncoesString() {
         $this->assertEquals('ASD', Util::upper('asd'));
         $this->assertEquals('asd', Util::lower('ASD'));
         $this->assertEquals('Asd', Util::upFirst('asd'));
@@ -31,7 +29,7 @@ class UtilTest extends TestCase
         $this->assertEquals('AaEeIiOoUu', Util::normalizeChars('ÁáÉéÍiÓóÚú'));
     }
 
-    public function testModulos(){
+    public function testModulos() {
         $this->assertEquals(7, Util::modulo11('123456789', 2, 9));
         $this->assertEquals(4, Util::modulo11('123456789', 2, 9, 1));
         $this->assertEquals(7, Util::modulo10('123456789'));
@@ -154,4 +152,5 @@ class UtilTest extends TestCase
     public function testControleArrayKeyNumerica() {
         Util::array2Controle([0 => 1]);
     }
+
 }

@@ -1,22 +1,22 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Cnab\Retorno\Cnab240;
+namespace ACSToigo\Cnab\Retorno\Cnab240;
 
-use \Newerton\Yii2Boleto\Cnab\Retorno\AbstractRetorno as AbstractRetornoGeneric;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\HeaderLote as HeaderLoteContract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\TrailerLote as TrailerLoteContract;
+use ACSToigo\Cnab\Retorno\AbstractRetorno as AbstractRetornoGeneric;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\HeaderLote as HeaderLoteContract;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\TrailerLote as TrailerLoteContract;
 
 /**
  * Class AbstractRetorno
  *
- * @method  \Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\Detalhe getDetalhe()
- * @method  \Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\Header getHeader()
- * @method  \Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\Trailer getTrailer()
- * @method  \Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\Detalhe detalheAtual()
- * @package Newerton\Yii2Boleto\Cnab\Retorno\Cnab240
+ * @method  ACSToigo\Cnab\Retorno\Cnab240\Detalhe getDetalhe()
+ * @method  ACSToigo\Cnab\Retorno\Cnab240\Header getHeader()
+ * @method  ACSToigo\Cnab\Retorno\Cnab240\Trailer getTrailer()
+ * @method  ACSToigo\Cnab\Retorno\Cnab240\Detalhe detalheAtual()
+ * @package ACSToigo\Cnab\Retorno\Cnab240
  */
-abstract class AbstractRetorno extends AbstractRetornoGeneric
-{
+abstract class AbstractRetorno extends AbstractRetornoGeneric {
+
     /**
      * @var HeaderLoteContract
      */
@@ -31,8 +31,7 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
      * @param String $file
      * @throws \Exception
      */
-    public function __construct($file)
-    {
+    public function __construct($file) {
         parent::__construct($file);
 
         $this->header = new Header();
@@ -44,16 +43,14 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
     /**
      * @return HeaderLote
      */
-    public function getHeaderLote()
-    {
+    public function getHeaderLote() {
         return $this->headerLote;
     }
 
     /**
      * @return TrailerLote
      */
-    public function getTrailerLote()
-    {
+    public function getTrailerLote() {
         return $this->trailerLote;
     }
 
@@ -95,8 +92,7 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
     /**
      * Incrementa o detalhe.
      */
-    protected function incrementDetalhe()
-    {
+    protected function incrementDetalhe() {
         $this->increment++;
         $detalhe = new Detalhe();
         $this->detalhe[$this->increment] = $detalhe;
@@ -108,8 +104,7 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
      * @return $this
      * @throws \Exception
      */
-    public function processar()
-    {
+    public function processar() {
         if ($this->isProcessado()) {
             return $this;
         }
@@ -153,8 +148,7 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
      *
      * @return array
      */
-    public function toArray()
-    {
+    public function toArray() {
         $array = [
             'header' => $this->header->toArray(),
             'headerLote' => $this->headerLote->toArray(),
@@ -184,8 +178,8 @@ abstract class AbstractRetorno extends AbstractRetornoGeneric
         return $array;
     }
 
-    protected function getSegmentType($line)
-    {
+    protected function getSegmentType($line) {
         return strtoupper($this->rem(14, 14, $line));
     }
+
 }

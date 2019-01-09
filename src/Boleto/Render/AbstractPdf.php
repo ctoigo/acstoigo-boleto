@@ -1,23 +1,20 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Boleto\Render;
+namespace ACSToigo\Boleto\Render;
 
 use fpdf\FPDF;
 
-abstract class AbstractPdf extends FPDF
-{
-    // INCLUDE JS
+abstract class AbstractPdf extends FPDF {
+
     protected $javascript;
     protected $n_js;
     protected $angle = 0;
 
-    protected function IncludeJS($script)
-    {
+    protected function IncludeJS($script) {
         $this->javascript = $script;
     }
 
-    public function Footer()
-    {
+    public function Footer() {
         $this->SetY(-20);
         $pageGroups = (is_array($this->PageGroups) ? count($this->PageGroups) : 0);
         if ($pageGroups) {
@@ -25,8 +22,7 @@ abstract class AbstractPdf extends FPDF
         }
     }
 
-    protected function _putjavascript()
-    {
+    protected function _putjavascript() {
         $this->_newobj();
         $this->n_js = $this->n;
         $this->_out('<<');
@@ -41,16 +37,14 @@ abstract class AbstractPdf extends FPDF
         $this->_out('endobj');
     }
 
-    public function _putresources()
-    {
+    public function _putresources() {
         parent::_putresources();
         if (!empty($this->javascript)) {
             $this->_putjavascript();
         }
     }
 
-    public function _putcatalog()
-    {
+    public function _putcatalog() {
         parent::_putcatalog();
         if (!empty($this->javascript)) {
             $this->_out('/Names <</JavaScript ' . ($this->n_js) . ' 0 R>>');
@@ -63,25 +57,22 @@ abstract class AbstractPdf extends FPDF
     protected $CurrPageGroup; // variable containing the alias of the current page group
 
     // create a new page group; call this before calling AddPage()
-    public function StartPageGroup()
-    {
+
+    public function StartPageGroup() {
         $this->NewPageGroup = true;
     }
 
     // current page in the group
-    public function GroupPageNo()
-    {
+    public function GroupPageNo() {
         return $this->PageGroups[$this->CurrPageGroup];
     }
 
     // alias of the current page group -- will be replaced by the total number of pages in this group
-    public function PageGroupAlias()
-    {
+    public function PageGroupAlias() {
         return $this->CurrPageGroup;
     }
 
-    public function _beginpage($orientation, $size)
-    {
+    public function _beginpage($orientation, $size) {
         parent::_beginpage($orientation, $size);
         if ($this->NewPageGroup) {
             // start a new group
@@ -91,12 +82,11 @@ abstract class AbstractPdf extends FPDF
             $this->CurrPageGroup = $alias;
             $this->NewPageGroup = false;
         } elseif ($this->CurrPageGroup) {
-            $this->PageGroups[$this->CurrPageGroup]++;
+            $this->PageGroups[$this->CurrPageGroup] ++;
         }
     }
 
-    public function _putpages()
-    {
+    public function _putpages() {
         $nb = $this->page;
         if (!empty($this->PageGroups)) {
             // do page number replacement
@@ -109,8 +99,7 @@ abstract class AbstractPdf extends FPDF
         parent::_putpages();
     }
 
-    protected function _()
-    {
+    protected function _() {
         $args = func_get_args();
         $var = utf8_decode(array_shift($args));
         $s = vsprintf($var, $args);
@@ -126,8 +115,7 @@ abstract class AbstractPdf extends FPDF
      * @param $align
      * @param float $dec
      */
-    protected function textFitCell($w, $h, $txt, $border, $ln, $align, $dec = 0.1)
-    {
+    protected function textFitCell($w, $h, $txt, $border, $ln, $align, $dec = 0.1) {
         $fsize = $this->FontSizePt;
         $size = $fsize;
         while ($this->GetStringWidth($txt) > ($w - 2)) {
@@ -146,8 +134,7 @@ abstract class AbstractPdf extends FPDF
      * @param int $basewidth
      * @param int $height
      */
-    public function i25($xpos, $ypos, $code, $basewidth = 1, $height = 10)
-    {
+    public function i25($xpos, $ypos, $code, $basewidth = 1, $height = 10) {
         $code = (strlen($code) % 2 != 0 ? '0' : '') . $code;
         $wide = $basewidth;
         $narrow = $basewidth / 3;
@@ -205,9 +192,7 @@ abstract class AbstractPdf extends FPDF
         }
     }
 
-
-    public function __construct($orientation = 'P', $unit = 'mm', $size = 'A4')
-    {
+    public function __construct($orientation = 'P', $unit = 'mm', $size = 'A4') {
         parent::__construct($orientation, $unit, $size);
         $this->SetCreator($this->_('Intrasis Desenvolvimento de Sistemas'));
         $this->SetAuthor($this->_('Intrasis Desenvolvimento de Sistemas'));
@@ -226,11 +211,11 @@ abstract class AbstractPdf extends FPDF
      * @param bool $print 1 imprime 0 nao imprime
      * @return string|void
      */
-    public function Output($name = '', $dest = 'I', $print = false)
-    {
+    public function Output($name = '', $dest = 'I', $print = false) {
         if ($print) {
             $this->IncludeJS("print('true');");
         }
         return parent::Output($name, $dest);
     }
+
 }

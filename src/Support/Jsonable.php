@@ -1,13 +1,13 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Support;
+namespace ACSToigo\Support;
 
 /**
  * Interface Jsonable
- * @package Newerton\Yii2Boleto\Support
+ * @package ACSToigo\Support
  */
-interface Jsonable
-{
+interface Jsonable {
+
     /**
      * Convert the object to its JSON representation.
      *

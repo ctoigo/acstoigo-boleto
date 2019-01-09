@@ -1,14 +1,13 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Tests;
+namespace ACSToigo\Tests;
 
-use Newerton\Yii2Boleto\Pessoa;
-use Newerton\Yii2Boleto\Util;
+use ACSToigo\Pessoa;
+use ACSToigo\Util;
 
-class PessoaTest extends TestCase
-{
+class PessoaTest extends TestCase {
 
-    public function testPessoaCriandoConstrutor(){
+    public function testPessoaCriandoConstrutor() {
 
         $nome = 'Cliente';
         $endereco = 'Rua um, 123';
@@ -18,17 +17,15 @@ class PessoaTest extends TestCase
         $cidade = 'CIDADE';
         $documento = '99999999999';
 
-        $pessoa = new Pessoa(
-            [
-                'nome' => $nome,
-                'endereco' => $endereco,
-                'bairro' => $bairro,
-                'cep' => $cep,
-                'uf' => $uf,
-                'cidade' => $cidade,
-                'documento' => $documento,
-            ]
-        );
+        $pessoa = new Pessoa([
+            'nome' => $nome,
+            'endereco' => $endereco,
+            'bairro' => $bairro,
+            'cep' => $cep,
+            'uf' => $uf,
+            'cidade' => $cidade,
+            'documento' => $documento,
+        ]);
 
         $this->assertEquals($nome, $pessoa->getNome());
         $this->assertEquals($endereco, $pessoa->getEndereco());
@@ -59,23 +56,19 @@ class PessoaTest extends TestCase
         $pessoa->setDocumento($documento);
         $this->assertEquals(Util::maskString($documento, '##.#####.#-##'), $pessoa->getDocumento());
         $this->assertEquals('CEI', $pessoa->getTipoDocumento());
-
     }
 
     /**
      * @expectedException     \Exception
      */
-    public function testPessoaDocumentoErrado(){
+    public function testPessoaDocumentoErrado() {
 
-        $pessoa = new Pessoa(
-            [
-                'documento' => '99999',
-            ]
-        );
+        $pessoa = new Pessoa([
+            'documento' => '99999',
+        ]);
     }
 
-
-    public function testPessoaCriandoMetodoCreate(){
+    public function testPessoaCriandoMetodoCreate() {
 
         $nome = 'Cliente';
         $endereco = 'Rua um, 123';
@@ -85,17 +78,15 @@ class PessoaTest extends TestCase
         $cidade = 'CIDADE';
         $documento = '99999999999';
 
-        $pessoa = new Pessoa(
-            [
-                'nome' => $nome,
-                'endereco' => $endereco,
-                'bairro' => $bairro,
-                'cep' => $cep,
-                'uf' => $uf,
-                'cidade' => $cidade,
-                'documento' => $documento,
-            ]
-        );
+        $pessoa = new Pessoa([
+            'nome' => $nome,
+            'endereco' => $endereco,
+            'bairro' => $bairro,
+            'cep' => $cep,
+            'uf' => $uf,
+            'cidade' => $cidade,
+            'documento' => $documento,
+        ]);
 
         $pessoa2 = Pessoa::create($nome, $documento, $endereco, $bairro, $cep, $cidade, $uf);
 
@@ -116,10 +107,9 @@ class PessoaTest extends TestCase
 
             $this->assertEquals($valor_1, $valor_2);
         }
-
     }
 
-    public function testPessoaMascara(){
+    public function testPessoaMascara() {
 
         $pessoa = new Pessoa;
 
@@ -143,6 +133,6 @@ class PessoaTest extends TestCase
         $pessoa->setDocumento('9999999999');
         $this->assertEquals('CEI', $pessoa->getTipoDocumento());
         $this->assertEquals('99.99999.9-99', $pessoa->getDocumento());
-
     }
+
 }

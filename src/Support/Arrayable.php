@@ -1,13 +1,13 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Support;
+namespace ACSToigo\Support;
 
 /**
  * Interface Arrayable
- * @package Newerton\Yii2Boleto\Support
+ * @package ACSToigo\Support
  */
-interface Arrayable
-{
+interface Arrayable {
+
     /**
      * Get the instance as an array.
      *

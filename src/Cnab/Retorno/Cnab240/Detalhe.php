@@ -1,14 +1,15 @@
 <?php
-namespace Newerton\Yii2Boleto\Cnab\Retorno\Cnab240;
+
+namespace ACSToigo\Cnab\Retorno\Cnab240;
 
 use Carbon\Carbon;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Detalhe as DetalheContract;
-use Newerton\Yii2Boleto\Contracts\Pessoa as PessoaContract;
-use Newerton\Yii2Boleto\Traits\MagicTrait;
-use Newerton\Yii2Boleto\Util;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Detalhe as DetalheContract;
+use ACSToigo\Contracts\Pessoa as PessoaContract;
+use ACSToigo\Traits\MagicTrait;
+use ACSToigo\Util;
 
-class Detalhe implements DetalheContract
-{
+class Detalhe implements DetalheContract {
+
     use MagicTrait;
 
     /**
@@ -55,6 +56,7 @@ class Detalhe implements DetalheContract
      * @var Carbon
      */
     protected $dataOcorrencia;
+
     /**
      * @var Carbon
      */
@@ -79,18 +81,22 @@ class Detalhe implements DetalheContract
      * @var string
      */
     protected $valorIOF;
+
     /**
      * @var string
      */
     protected $valorAbatimento;
+
     /**
      * @var string
      */
     protected $valorDesconto;
+
     /**
      * @var string
      */
     protected $valorMora;
+
     /**
      * @var string
      */
@@ -114,16 +120,14 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getOcorrencia()
-    {
+    public function getOcorrencia() {
         return $this->ocorrencia;
     }
 
     /**
      * @return boolean
      */
-    public function hasOcorrencia()
-    {
+    public function hasOcorrencia() {
         $ocorrencias = func_get_args();
 
         if (count($ocorrencias) == 0 && !empty($this->getOcorrencia())) {
@@ -146,8 +150,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setOcorrencia($ocorrencia)
-    {
+    public function setOcorrencia($ocorrencia) {
         $this->ocorrencia = $ocorrencia;
 
         return $this;
@@ -156,8 +159,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getOcorrenciaTipo()
-    {
+    public function getOcorrenciaTipo() {
         return $this->ocorrenciaTipo;
     }
 
@@ -166,8 +168,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setOcorrenciaTipo($ocorrenciaTipo)
-    {
+    public function setOcorrenciaTipo($ocorrenciaTipo) {
         $this->ocorrenciaTipo = $ocorrenciaTipo;
 
         return $this;
@@ -176,8 +177,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getOcorrenciaDescricao()
-    {
+    public function getOcorrenciaDescricao() {
         return $this->ocorrenciaDescricao;
     }
 
@@ -186,8 +186,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setOcorrenciaDescricao($ocorrenciaDescricao)
-    {
+    public function setOcorrenciaDescricao($ocorrenciaDescricao) {
         $this->ocorrenciaDescricao = $ocorrenciaDescricao;
 
         return $this;
@@ -196,8 +195,7 @@ class Detalhe implements DetalheContract
     /**
      * @return int
      */
-    public function getNumeroControle()
-    {
+    public function getNumeroControle() {
         return $this->numeroControle;
     }
 
@@ -206,8 +204,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setNumeroControle($numeroControle)
-    {
+    public function setNumeroControle($numeroControle) {
         $this->numeroControle = $numeroControle;
 
         return $this;
@@ -216,8 +213,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getNumeroDocumento()
-    {
+    public function getNumeroDocumento() {
         return $this->numeroDocumento;
     }
 
@@ -226,8 +222,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setNumeroDocumento($numeroDocumento)
-    {
+    public function setNumeroDocumento($numeroDocumento) {
         $this->numeroDocumento = $numeroDocumento;
 
         return $this;
@@ -236,8 +231,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getNossoNumero()
-    {
+    public function getNossoNumero() {
         return $this->nossoNumero;
     }
 
@@ -246,8 +240,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setNossoNumero($nossoNumero)
-    {
+    public function setNossoNumero($nossoNumero) {
         $this->nossoNumero = $nossoNumero;
 
         return $this;
@@ -256,8 +249,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getCarteira()
-    {
+    public function getCarteira() {
         return $this->carteira;
     }
 
@@ -266,8 +258,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setCarteira($carteira)
-    {
+    public function setCarteira($carteira) {
         $this->carteira = $carteira;
 
         return $this;
@@ -278,11 +269,8 @@ class Detalhe implements DetalheContract
      *
      * @return Carbon|null|string
      */
-    public function getDataVencimento($format = 'd/m/Y')
-    {
-        return $this->dataVencimento instanceof Carbon
-            ? $format === false ? $this->dataVencimento : $this->dataVencimento->format($format)
-            : null;
+    public function getDataVencimento($format = 'd/m/Y') {
+        return $this->dataVencimento instanceof Carbon ? $format === false ? $this->dataVencimento : $this->dataVencimento->format($format) : null;
     }
 
     /**
@@ -292,8 +280,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setDataVencimento($dataVencimento, $format = 'dmY')
-    {
+    public function setDataVencimento($dataVencimento, $format = 'dmY') {
         $this->dataVencimento = trim($dataVencimento, '0 ') ? Carbon::createFromFormat($format, $dataVencimento) : null;
 
         return $this;
@@ -304,11 +291,8 @@ class Detalhe implements DetalheContract
      *
      * @return Carbon|null|string
      */
-    public function getDataCredito($format = 'd/m/Y')
-    {
-        return $this->dataCredito instanceof Carbon
-            ? $format === false ? $this->dataCredito : $this->dataCredito->format($format)
-            : null;
+    public function getDataCredito($format = 'd/m/Y') {
+        return $this->dataCredito instanceof Carbon ? $format === false ? $this->dataCredito : $this->dataCredito->format($format) : null;
     }
 
     /**
@@ -318,8 +302,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setDataCredito($dataCredito, $format = 'dmY')
-    {
+    public function setDataCredito($dataCredito, $format = 'dmY') {
         $this->dataCredito = trim($dataCredito, '0 ') ? Carbon::createFromFormat($format, $dataCredito) : null;
 
         return $this;
@@ -330,11 +313,8 @@ class Detalhe implements DetalheContract
      *
      * @return Carbon|null|string
      */
-    public function getDataOcorrencia($format = 'd/m/Y')
-    {
-        return $this->dataOcorrencia instanceof Carbon
-            ? $format === false ? $this->dataOcorrencia : $this->dataOcorrencia->format($format)
-            : null;
+    public function getDataOcorrencia($format = 'd/m/Y') {
+        return $this->dataOcorrencia instanceof Carbon ? $format === false ? $this->dataOcorrencia : $this->dataOcorrencia->format($format) : null;
     }
 
     /**
@@ -344,8 +324,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setDataOcorrencia($dataOcorrencia, $format = 'dmY')
-    {
+    public function setDataOcorrencia($dataOcorrencia, $format = 'dmY') {
         $this->dataOcorrencia = trim($dataOcorrencia, '0 ') ? Carbon::createFromFormat($format, $dataOcorrencia) : null;
 
         return $this;
@@ -354,8 +333,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValor()
-    {
+    public function getValor() {
         return $this->valor;
     }
 
@@ -364,8 +342,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValor($valor)
-    {
+    public function setValor($valor) {
         $this->valor = $valor;
 
         return $this;
@@ -374,8 +351,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorIOF()
-    {
+    public function getValorIOF() {
         return $this->valorIOF;
     }
 
@@ -384,8 +360,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorIOF($valorIOF)
-    {
+    public function setValorIOF($valorIOF) {
         $this->valorIOF = $valorIOF;
 
         return $this;
@@ -394,8 +369,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorAbatimento()
-    {
+    public function getValorAbatimento() {
         return $this->valorAbatimento;
     }
 
@@ -404,8 +378,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorAbatimento($valorAbatimento)
-    {
+    public function setValorAbatimento($valorAbatimento) {
         $this->valorAbatimento = $valorAbatimento;
 
         return $this;
@@ -414,8 +387,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorDesconto()
-    {
+    public function getValorDesconto() {
         return $this->valorDesconto;
     }
 
@@ -424,8 +396,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorDesconto($valorDesconto)
-    {
+    public function setValorDesconto($valorDesconto) {
         $this->valorDesconto = $valorDesconto;
 
         return $this;
@@ -434,8 +405,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorMora()
-    {
+    public function getValorMora() {
         return $this->valorMora;
     }
 
@@ -444,8 +414,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorMora($valorMora)
-    {
+    public function setValorMora($valorMora) {
         $this->valorMora = $valorMora;
 
         return $this;
@@ -454,8 +423,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorMulta()
-    {
+    public function getValorMulta() {
         return $this->valorMulta;
     }
 
@@ -464,8 +432,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorMulta($valorMulta)
-    {
+    public function setValorMulta($valorMulta) {
         $this->valorMulta = $valorMulta;
 
         return $this;
@@ -474,8 +441,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorRecebido()
-    {
+    public function getValorRecebido() {
         return $this->valorRecebido;
     }
 
@@ -484,8 +450,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorRecebido($valorRecebido)
-    {
+    public function setValorRecebido($valorRecebido) {
         $this->valorRecebido = $valorRecebido;
 
         return $this;
@@ -494,8 +459,7 @@ class Detalhe implements DetalheContract
     /**
      * @return string
      */
-    public function getValorTarifa()
-    {
+    public function getValorTarifa() {
         return $this->valorTarifa;
     }
 
@@ -504,8 +468,7 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setValorTarifa($valorTarifa)
-    {
+    public function setValorTarifa($valorTarifa) {
         $this->valorTarifa = $valorTarifa;
 
         return $this;
@@ -514,8 +477,7 @@ class Detalhe implements DetalheContract
     /**
      * @return PessoaContract
      */
-    public function getPagador()
-    {
+    public function getPagador() {
         return $this->pagador;
     }
 
@@ -525,8 +487,7 @@ class Detalhe implements DetalheContract
      * @return $this
      * @throws \Exception
      */
-    public function setPagador($pagador)
-    {
+    public function setPagador($pagador) {
         Util::addPessoa($this->pagador, $pagador);
         return $this;
     }
@@ -536,16 +497,14 @@ class Detalhe implements DetalheContract
      *
      * @return bool
      */
-    public function hasError()
-    {
+    public function hasError() {
         return $this->getOcorrencia() == self::OCORRENCIA_ERRO;
     }
 
     /**
      * @return array
      */
-    public function getCheques()
-    {
+    public function getCheques() {
         return $this->cheques;
     }
 
@@ -554,19 +513,16 @@ class Detalhe implements DetalheContract
      *
      * @return Detalhe
      */
-    public function setCheques(array $cheques)
-    {
+    public function setCheques(array $cheques) {
         $this->cheques = $cheques;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getError()
-    {
+    public function getError() {
         return $this->error;
     }
 
@@ -575,11 +531,11 @@ class Detalhe implements DetalheContract
      *
      * @return $this
      */
-    public function setError($error)
-    {
+    public function setError($error) {
         $this->ocorrenciaTipo = self::OCORRENCIA_ERRO;
         $this->error = $error;
 
         return $this;
     }
+
 }

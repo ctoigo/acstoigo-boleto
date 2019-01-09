@@ -1,8 +1,9 @@
 <?php
-namespace Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240;
 
-interface Header
-{
+namespace ACSToigo\Contracts\Cnab\Retorno\Cnab240;
+
+interface Header {
+
     /**
      * @return string
      */

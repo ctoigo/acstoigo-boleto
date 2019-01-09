@@ -1,9 +1,9 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Contracts\Cnab\Retorno;
+namespace ACSToigo\Contracts\Cnab\Retorno;
 
-interface Detalhe
-{
+interface Detalhe {
+
     const OCORRENCIA_LIQUIDADA = 1;
     const OCORRENCIA_BAIXADA = 2;
     const OCORRENCIA_ENTRADA = 3;

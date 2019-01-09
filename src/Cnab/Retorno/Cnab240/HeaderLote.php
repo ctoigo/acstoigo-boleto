@@ -1,14 +1,15 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Cnab\Retorno\Cnab240;
+namespace ACSToigo\Cnab\Retorno\Cnab240;
 
 use Carbon\Carbon;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\HeaderLote as HeaderLoteContract;
-use Newerton\Yii2Boleto\Traits\MagicTrait;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\HeaderLote as HeaderLoteContract;
+use ACSToigo\Traits\MagicTrait;
 
-class HeaderLote implements HeaderLoteContract
-{
+class HeaderLote implements HeaderLoteContract {
+
     use MagicTrait;
+
     /**
      * @var string
      */
@@ -112,8 +113,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getCodigoBanco()
-    {
+    public function getCodigoBanco() {
         return $this->codigoBanco;
     }
 
@@ -122,8 +122,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setCodigoBanco($codigoBanco)
-    {
+    public function setCodigoBanco($codigoBanco) {
         $this->codigoBanco = $codigoBanco;
 
         return $this;
@@ -132,8 +131,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getTipoRegistro()
-    {
+    public function getTipoRegistro() {
         return $this->tipoRegistro;
     }
 
@@ -142,8 +140,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setTipoRegistro($tipoRegistro)
-    {
+    public function setTipoRegistro($tipoRegistro) {
         $this->tipoRegistro = $tipoRegistro;
 
         return $this;
@@ -152,8 +149,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getCodBanco()
-    {
+    public function getCodBanco() {
         return $this->codBanco;
     }
 
@@ -162,8 +158,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setCodBanco($codBanco)
-    {
+    public function setCodBanco($codBanco) {
         $this->codBanco = $codBanco;
 
         return $this;
@@ -172,8 +167,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getNumeroLoteRetorno()
-    {
+    public function getNumeroLoteRetorno() {
         return $this->numeroLoteRetorno;
     }
 
@@ -182,8 +176,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setNumeroLoteRetorno($numeroLoteRetorno)
-    {
+    public function setNumeroLoteRetorno($numeroLoteRetorno) {
         $this->numeroLoteRetorno = $numeroLoteRetorno;
 
         return $this;
@@ -192,8 +185,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getTipoOperacao()
-    {
+    public function getTipoOperacao() {
         return $this->tipoOperacao;
     }
 
@@ -202,19 +194,16 @@ class HeaderLote implements HeaderLoteContract
      * @param string $tipoOperacao
      * @return $this
      */
-    public function setTipoOperacao($tipoOperacao)
-    {
+    public function setTipoOperacao($tipoOperacao) {
         $this->tipoOperacao = $tipoOperacao;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getTipoServico()
-    {
+    public function getTipoServico() {
         return $this->tipoServico;
     }
 
@@ -223,19 +212,16 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setTipoServico($tipoServico)
-    {
+    public function setTipoServico($tipoServico) {
         $this->tipoServico = $tipoServico;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getVersaoLayoutLote()
-    {
+    public function getVersaoLayoutLote() {
         return $this->versaoLayoutLote;
     }
 
@@ -244,19 +230,16 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setVersaoLayoutLote($versaoLayoutLote)
-    {
+    public function setVersaoLayoutLote($versaoLayoutLote) {
         $this->versaoLayoutLote = $versaoLayoutLote;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getTipoInscricao()
-    {
+    public function getTipoInscricao() {
         return $this->tipoInscricao;
     }
 
@@ -266,19 +249,16 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setTipoInscricao($tipoInscricao)
-    {
+    public function setTipoInscricao($tipoInscricao) {
         $this->tipoInscricao = $tipoInscricao;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getNumeroInscricao()
-    {
+    public function getNumeroInscricao() {
         return $this->numeroInscricao;
     }
 
@@ -287,8 +267,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setNumeroInscricao($numeroInscricao)
-    {
+    public function setNumeroInscricao($numeroInscricao) {
         $this->numeroInscricao = $numeroInscricao;
 
         return $this;
@@ -297,8 +276,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getCodigoCedente()
-    {
+    public function getCodigoCedente() {
         return $this->codigoCedente;
     }
 
@@ -307,8 +285,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setCodigoCedente($codigoCedente)
-    {
+    public function setCodigoCedente($codigoCedente) {
         $this->codigoCedente = $codigoCedente;
 
         return $this;
@@ -317,8 +294,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getConvenio()
-    {
+    public function getConvenio() {
         return $this->convenio;
     }
 
@@ -327,8 +303,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setConvenio($convenio)
-    {
+    public function setConvenio($convenio) {
         $this->convenio = $convenio;
 
         return $this;
@@ -337,8 +312,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getNomeEmpresa()
-    {
+    public function getNomeEmpresa() {
         return $this->nomeEmpresa;
     }
 
@@ -347,8 +321,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setNomeEmpresa($nomeEmpresa)
-    {
+    public function setNomeEmpresa($nomeEmpresa) {
         $this->nomeEmpresa = $nomeEmpresa;
 
         return $this;
@@ -357,8 +330,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getMensagem1()
-    {
+    public function getMensagem1() {
         return $this->mensagem_1;
     }
 
@@ -367,11 +339,8 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return string
      */
-    public function getDataGravacao($format = 'd/m/Y')
-    {
-        return $this->dataGravacao instanceof Carbon
-            ? $format === false ? $this->dataGravacao : $this->dataGravacao->format($format)
-            : null;
+    public function getDataGravacao($format = 'd/m/Y') {
+        return $this->dataGravacao instanceof Carbon ? $format === false ? $this->dataGravacao : $this->dataGravacao->format($format) : null;
     }
 
     /**
@@ -381,8 +350,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setDataGravacao($dataGravacao, $format = 'dmY')
-    {
+    public function setDataGravacao($dataGravacao, $format = 'dmY') {
         $this->dataGravacao = trim($dataGravacao, '0 ') ? Carbon::createFromFormat($format, $dataGravacao) : null;
 
         return $this;
@@ -393,11 +361,8 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return string
      */
-    public function getDataCredito($format = 'd/m/Y')
-    {
-        return $this->dataCredito instanceof Carbon
-            ? $format === false ? $this->dataCredito : $this->dataCredito->format($format)
-            : null;
+    public function getDataCredito($format = 'd/m/Y') {
+        return $this->dataCredito instanceof Carbon ? $format === false ? $this->dataCredito : $this->dataCredito->format($format) : null;
     }
 
     /**
@@ -407,8 +372,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setDataCredito($dataCredito, $format = 'dmY')
-    {
+    public function setDataCredito($dataCredito, $format = 'dmY') {
         $this->dataCredito = trim($dataCredito, '0 ') ? Carbon::createFromFormat($format, $dataCredito) : null;
 
         return $this;
@@ -417,8 +381,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getAgencia()
-    {
+    public function getAgencia() {
         return $this->agencia;
     }
 
@@ -427,19 +390,16 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setAgencia($agencia)
-    {
+    public function setAgencia($agencia) {
         $this->agencia = $agencia;
 
         return $this;
     }
 
-
     /**
      * @return string
      */
-    public function getAgenciaDv()
-    {
+    public function getAgenciaDv() {
         return $this->agenciaDv;
     }
 
@@ -448,8 +408,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setAgenciaDv($agenciaDv)
-    {
+    public function setAgenciaDv($agenciaDv) {
         $this->agenciaDv = $agenciaDv;
 
         return $this;
@@ -458,8 +417,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getConta()
-    {
+    public function getConta() {
         return $this->conta;
     }
 
@@ -468,8 +426,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setConta($conta)
-    {
+    public function setConta($conta) {
         $this->conta = $conta;
 
         return $this;
@@ -478,8 +435,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getNumeroRetorno()
-    {
+    public function getNumeroRetorno() {
         return $this->numeroRetorno;
     }
 
@@ -488,8 +444,7 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setNumeroRetorno($numeroRetorno)
-    {
+    public function setNumeroRetorno($numeroRetorno) {
         $this->numeroRetorno = $numeroRetorno;
 
         return $this;
@@ -498,8 +453,7 @@ class HeaderLote implements HeaderLoteContract
     /**
      * @return string
      */
-    public function getContaDv()
-    {
+    public function getContaDv() {
         return $this->contaDv;
     }
 
@@ -508,10 +462,10 @@ class HeaderLote implements HeaderLoteContract
      *
      * @return $this
      */
-    public function setContaDv($contaDv)
-    {
+    public function setContaDv($contaDv) {
         $this->contaDv = $contaDv;
 
         return $this;
     }
+
 }

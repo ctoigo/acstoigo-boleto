@@ -1,88 +1,82 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Tests\Remessa;
+namespace ACSToigo\Tests\Remessa;
 
-use Newerton\Yii2Boleto\Boleto\Banco as Boleto;
-use Newerton\Yii2Boleto\Cnab\Remessa\Cnab240\Banco as Remessa;
-use Newerton\Yii2Boleto\Pessoa;
-use Newerton\Yii2Boleto\Tests\TestCase;
+use ACSToigo\Boleto\Banco as Boleto;
+use ACSToigo\Cnab\Remessa\Cnab240\Banco as Remessa;
+use ACSToigo\Pessoa;
+use ACSToigo\Tests\TestCase;
 
-class RemessaCnab240Test extends TestCase
-{
+class RemessaCnab240Test extends TestCase {
 
     protected static $pagador;
     protected static $beneficiario;
 
-    public static function setUpBeforeClass(){
-        self::$beneficiario = new Pessoa(
-            [
-                'nome' => 'ACME',
-                'endereco' => 'Rua um, 123',
-                'cep' => '99999-999',
-                'uf' => 'UF',
-                'cidade' => 'CIDADE',
-                'documento' => '99.999.999/9999-99',
-            ]
-        );
+    public static function setUpBeforeClass() {
+        self::$beneficiario = new Pessoa([
+            'nome' => 'Beneficiario',
+            'endereco' => 'Rua um, 123',
+            'cep' => '99999-999',
+            'uf' => 'UF',
+            'cidade' => 'CIDADE',
+            'documento' => '99.999.999/9999-99',
+        ]);
 
-        self::$pagador = new Pessoa(
-            [
-                'nome' => 'Cliente',
-                'endereco' => 'Rua um, 123',
-                'bairro' => 'Bairro',
-                'cep' => '99999-999',
-                'uf' => 'UF',
-                'cidade' => 'CIDADE',
-                'documento' => '999.999.999-99',
-            ]
-        );
+        self::$pagador = new Pessoa([
+            'nome' => 'Cliente',
+            'endereco' => 'Rua um, 123',
+            'bairro' => 'Bairro',
+            'cep' => '99999-999',
+            'uf' => 'UF',
+            'cidade' => 'CIDADE',
+            'documento' => '999.999.999-99',
+        ]);
     }
 
-    public static function tearDownAfterClass()
-    {
+    public static function tearDownAfterClass() {
         $aFiles = [
             __DIR__,
             'files',
             'cnab240',
         ];
         $files = glob(implode(DIRECTORY_SEPARATOR, $aFiles) . '/*'); // get all file names
-        foreach($files as $file){
-            if(is_file($file))
+        foreach ($files as $file) {
+            if (is_file($file))
                 @unlink($file);
         }
     }
 
-    public function testRemessaSantanderCnab240(){
+    public function testRemessaSantanderCnab240() {
         $boleto = new Boleto\Santander(
-            [
-                'logo' => realpath(__DIR__ . '/../logos/') . DIRECTORY_SEPARATOR . '033.png',
-                'dataVencimento' => new \Carbon\Carbon(),
-                'valor' => 100,
-                'multa' => false,
-                'juros' => false,
-                'numero' => 1,
-                'numeroDocumento' => 1,
-                'pagador' => self::$pagador,
-                'beneficiario' => self::$beneficiario,
-                'diasBaixaAutomatica' => 15,
-                'carteira' => 101,
-                'agencia' => 1111,
-                'conta' => 99999999,
-                'descricaoDemonstrativo' => ['demonstrativo 1', 'demonstrativo 2', 'demonstrativo 3'],
-                'instrucoes' =>  ['instrucao 1', 'instrucao 2', 'instrucao 3'],
-                'aceite' => 'S',
-                'especieDoc' => 'DM',
-            ]
+                [
+            'logo' => realpath(__DIR__ . '/../logos/') . DIRECTORY_SEPARATOR . '033.png',
+            'dataVencimento' => new \Carbon\Carbon(),
+            'valor' => 100,
+            'multa' => false,
+            'juros' => false,
+            'numero' => 1,
+            'numeroDocumento' => 1,
+            'pagador' => self::$pagador,
+            'beneficiario' => self::$beneficiario,
+            'diasBaixaAutomatica' => 15,
+            'carteira' => 101,
+            'agencia' => 1111,
+            'conta' => 99999999,
+            'descricaoDemonstrativo' => ['demonstrativo 1', 'demonstrativo 2', 'demonstrativo 3'],
+            'instrucoes' => ['instrucao 1', 'instrucao 2', 'instrucao 3'],
+            'aceite' => 'S',
+            'especieDoc' => 'DM',
+                ]
         );
 
         $remessa = new Remessa\Santander(
-            [
-                'agencia' => 1111,
-                'carteira' => 101,
-                'conta' => 99999999,
-                'codigoCliente' => 12345678,
-                'beneficiario' => self::$beneficiario,
-            ]
+                [
+            'agencia' => 1111,
+            'carteira' => 101,
+            'conta' => 99999999,
+            'codigoCliente' => 12345678,
+            'beneficiario' => self::$beneficiario,
+                ]
         );
         $remessa->addBoleto($boleto);
 

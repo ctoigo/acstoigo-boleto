@@ -1,19 +1,15 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Tests\Retorno;
+namespace ACSToigo\Tests\Retorno;
 
-use Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\Detalhe;
-use Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\DetalheSegmentoT;
-use Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\DetalheSegmentoU;
-use Newerton\Yii2Boleto\Cnab\Retorno\Cnab240\DetalheSegmentoY;
-use Newerton\Yii2Boleto\Tests\TestCase;
+use ACSToigo\Cnab\Retorno\Cnab240\Detalhe;
+use ACSToigo\Tests\TestCase;
 use Illuminate\Support\Collection;
 
-class RetornoCnab240Test extends TestCase
-{
-    public function testRetornoSantanderCnab240()
-    {
-        $retorno = \Newerton\Yii2Boleto\Cnab\Retorno\Factory::make(__DIR__ . '/files/cnab240/santander.ret');
+class RetornoCnab240Test extends TestCase {
+
+    public function testRetornoSantanderCnab240() {
+        $retorno = \ACSToigo\Cnab\Retorno\Factory::make(__DIR__ . '/files/cnab240/santander.ret');
         $retorno->processar();
 
         $this->assertNotNull($retorno->getHeader());

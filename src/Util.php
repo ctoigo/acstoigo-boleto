@@ -1,6 +1,6 @@
 <?php
 
-namespace Newerton\Yii2Boleto;
+namespace ACSToigo;
 
 use Carbon\Carbon;
 
@@ -11,10 +11,10 @@ use Carbon\Carbon;
  * @TODO validar processar
  * @TODO validar float nos numeros
  *
- * @package Newerton\Yii2Boleto
+ * @package ACSToigo
  */
-final class Util
-{
+final class Util {
+
     public static $bancos = [
         '246' => 'Banco ABC Brasil S.A.',
         '025' => 'Banco Alfa S.A.',
@@ -145,8 +145,7 @@ final class Util
      * @param $string
      * @return string
      */
-    public static function upper($string)
-    {
+    public static function upper($string) {
         return strtr(mb_strtoupper($string), "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ", "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß");
     }
 
@@ -156,8 +155,7 @@ final class Util
      * @param $string
      * @return string
      */
-    public static function lower($string)
-    {
+    public static function lower($string) {
         return strtr(mb_strtolower($string), "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß", "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
     }
 
@@ -167,8 +165,7 @@ final class Util
      * @param $string
      * @return string
      */
-    public static function upFirst($string)
-    {
+    public static function upFirst($string) {
         return ucfirst(self::lower($string));
     }
 
@@ -178,8 +175,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function lettersOnly($string)
-    {
+    public static function lettersOnly($string) {
         return preg_replace('/[^[:alpha:]]/', '', $string);
     }
 
@@ -189,8 +185,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function onlyLetters($string)
-    {
+    public static function onlyLetters($string) {
         return self::lettersOnly($string);
     }
 
@@ -200,8 +195,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function lettersNot($string)
-    {
+    public static function lettersNot($string) {
         return preg_replace('/[[:alpha:]]/', '', $string);
     }
 
@@ -211,8 +205,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function notLetters($string)
-    {
+    public static function notLetters($string) {
         return self::lettersNot($string);
     }
 
@@ -222,8 +215,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function numbersOnly($string)
-    {
+    public static function numbersOnly($string) {
         return preg_replace('/[^[:digit:]]/', '', $string);
     }
 
@@ -233,8 +225,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function onlyNumbers($string)
-    {
+    public static function onlyNumbers($string) {
         return self::numbersOnly($string);
     }
 
@@ -244,8 +235,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function numbersNot($string)
-    {
+    public static function numbersNot($string) {
         return preg_replace('/[[:digit:]]/', '', $string);
     }
 
@@ -255,8 +245,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function notNumbers($string)
-    {
+    public static function notNumbers($string) {
         return self::numbersNot($string);
     }
 
@@ -266,8 +255,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function alphanumberOnly($string)
-    {
+    public static function alphanumberOnly($string) {
         return preg_replace('/[^[:alnum:]]/', '', $string);
     }
 
@@ -277,8 +265,7 @@ final class Util
      * @param $string
      * @return mixed
      */
-    public static function onlyAlphanumber($string)
-    {
+    public static function onlyAlphanumber($string) {
         return self::alphanumberOnly($string);
     }
 
@@ -288,19 +275,16 @@ final class Util
      * @param $string
      * @return string
      */
-    public static function normalizeChars($string)
-    {
+    public static function normalizeChars($string) {
         $normalizeChars = array(
             'Á' => 'A', 'À' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Å' => 'A', 'Ä' => 'A', 'Æ' => 'AE', 'Ç' => 'C',
             'É' => 'E', 'È' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Í' => 'I', 'Ì' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'Eth',
             'Ñ' => 'N', 'Ó' => 'O', 'Ò' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O',
             'Ú' => 'U', 'Ù' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Ŕ' => 'R',
-
             'á' => 'a', 'à' => 'a', 'â' => 'a', 'ã' => 'a', 'å' => 'a', 'ä' => 'a', 'æ' => 'ae', 'ç' => 'c',
             'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e', 'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'eth',
             'ñ' => 'n', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o',
             'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ŕ' => 'r', 'ÿ' => 'y',
-
             'ß' => 'sz', 'þ' => 'thorn',
         );
         return strtr($string, $normalizeChars);
@@ -314,8 +298,7 @@ final class Util
      * @param  boolean $showThousands
      * @return string
      */
-    public static function nFloat($number, $decimals = 2, $showThousands = false)
-    {
+    public static function nFloat($number, $decimals = 2, $showThousands = false) {
         if (is_null($number) || empty(self::onlyNumbers($number))) {
             return '';
         }
@@ -343,8 +326,7 @@ final class Util
      * @param  integer $decimals
      * @return string
      */
-    public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true)
-    {
+    public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true) {
         if (is_null($number) || empty(self::onlyNumbers($number))) {
             return '';
         }
@@ -377,8 +359,7 @@ final class Util
      * @param int $defaultOnZero
      * @return string
      */
-    public static function percentOf($big, $small, $defaultOnZero = 0)
-    {
+    public static function percentOf($big, $small, $defaultOnZero = 0) {
         $result = $big > 0.01 ? (($small * 100) / $big) : $defaultOnZero;
         return self::nFloat($result);
     }
@@ -390,8 +371,7 @@ final class Util
      * @param $percent
      * @return int|string
      */
-    public static function percent($big, $percent)
-    {
+    public static function percent($big, $percent) {
         if ($percent < 0.01) {
             return 0;
         }
@@ -405,8 +385,7 @@ final class Util
      * @param $mask
      * @return string
      */
-    public static function maskString($val, $mask)
-    {
+    public static function maskString($val, $mask) {
         if (empty($val)) {
             return $val;
         }
@@ -436,8 +415,7 @@ final class Util
      * @param int $insert
      * @return string
      */
-    public static function numberFormatGeral($n, $loop, $insert = 0)
-    {
+    public static function numberFormatGeral($n, $loop, $insert = 0) {
         // Removo os caracteras a mais do que o pad solicitado caso a string seja maior
         $n = mb_substr(self::onlyNumbers($n), 0, $loop);
         return str_pad($n, $loop, $insert, STR_PAD_LEFT);
@@ -452,8 +430,7 @@ final class Util
      * @return string
      * @throws \Exception
      */
-    public static function formatCnab($tipo, $valor, $tamanho, $dec = 0, $sFill = '')
-    {
+    public static function formatCnab($tipo, $valor, $tamanho, $dec = 0, $sFill = '') {
         $tipo = self::upper($tipo);
         if (in_array($tipo, array('9', 9, 'N', '9L', 'NL'))) {
             if ($tipo == '9L' || $tipo == 'NL') {
@@ -479,8 +456,7 @@ final class Util
      * @param string $format
      * @return int
      */
-    public static function fatorVencimento(Carbon $date, $format = 'Y-m-d')
-    {
+    public static function fatorVencimento(Carbon $date, $format = 'Y-m-d') {
         $date = ($date instanceof Carbon) ? $date : Carbon::createFromFormat($format, $date)->setTime(0, 0, 0);
         return (new Carbon('1997-10-07'))->diffInDays($date);
     }
@@ -490,8 +466,7 @@ final class Util
      * @param string $format
      * @return string
      */
-    public static function dataJuliano(Carbon $date, $format = 'Y-m-d')
-    {
+    public static function dataJuliano(Carbon $date, $format = 'Y-m-d') {
         $date = ($date instanceof Carbon) ? $date : Carbon::createFromFormat($format, $date);
         $dateDiff = $date->copy()->day(31)->month(12)->subYear(1)->diffInDays($date);
         return $dateDiff . mb_substr($date->year, -1);
@@ -502,8 +477,7 @@ final class Util
      * @param string $format
      * @return string|static
      */
-    public static function fatorVencimentoBack($factor, $format = 'Y-m-d')
-    {
+    public static function fatorVencimentoBack($factor, $format = 'Y-m-d') {
         $date = Carbon::create(1997, 10, 7, 0, 0, 0)->addDay($factor);
         return $format ? $date->format($format) : $date;
     }
@@ -516,8 +490,7 @@ final class Util
      * @param int $resto10
      * @return int
      */
-    public static function modulo11($n, $factor = 2, $base = 9, $x10 = 0, $resto10 = 0)
-    {
+    public static function modulo11($n, $factor = 2, $base = 9, $x10 = 0, $resto10 = 0) {
         $sum = 0;
         for ($i = mb_strlen($n); $i > 0; $i--) {
             $sum += mb_substr($n, $i - 1, 1) * $factor;
@@ -542,15 +515,14 @@ final class Util
      * @param $n
      * @return int
      */
-    public static function modulo10($n)
-    {
+    public static function modulo10($n) {
         $chars = array_reverse(str_split($n, 1));
         $odd = array_intersect_key($chars, array_fill_keys(range(1, count($chars), 2), null));
         $even = array_intersect_key($chars, array_fill_keys(range(0, count($chars), 2), null));
         $even = array_map(
-            function ($n) {
-                return ($n >= 5) ? 2 * $n - 9 : 2 * $n;
-            }, $even
+                function ($n) {
+            return ($n >= 5) ? 2 * $n - 9 : 2 * $n;
+        }, $even
         );
         $total = array_sum($odd) + array_sum($even);
         return ((floor($total / 10) + 1) * 10 - $total) % 10;
@@ -561,8 +533,7 @@ final class Util
      * @return string
      * @throws \Exception
      */
-    public static function array2Controle(array $a)
-    {
+    public static function array2Controle(array $a) {
         if (preg_match('/[0-9]/', implode('', array_keys($a)))) {
             throw new \Exception('Somente chave alfanumérica no array, para separar o controle pela chave');
         }
@@ -583,14 +554,13 @@ final class Util
      * @param $controle
      * @return array|string
      */
-    public static function controle2array($controle)
-    {
+    public static function controle2array($controle) {
         $matches = '';
         $matches_founded = '';
         preg_match_all('/(([A-Za-zÀ-Úà-ú]+)([0-9]*))/', $controle, $matches, PREG_SET_ORDER);
         if ($matches) {
             foreach ($matches as $match) {
-                $matches_founded[$match[2]] = (int)$match[3];
+                $matches_founded[$match[2]] = (int) $match[3];
             }
             return $matches_founded;
         }
@@ -605,8 +575,7 @@ final class Util
      * @return string
      * @throws \Exception
      */
-    public static function criarRetornoFake($file, $ocorrencia = '02')
-    {
+    public static function criarRetornoFake($file, $ocorrencia = '02') {
         $remessa = file($file);
         $banco = self::remove(77, 79, $remessa[0]);
         $retorno[0] = array_fill(0, 400, '0');
@@ -719,9 +688,9 @@ final class Util
         self::adiciona($retorno[$i], 395, 400, sprintf('%06s', count($retorno)));
 
         $retorno = array_map(
-            function ($a) {
-                return implode('', $a);
-            }, $retorno
+                function ($a) {
+            return implode('', $a);
+        }, $retorno
         );
 
         return implode("\r\n", $retorno);
@@ -736,8 +705,7 @@ final class Util
      * @return string
      * @throws \Exception
      */
-    public static function remove($i, $f, &$array)
-    {
+    public static function remove($i, $f, &$array) {
         if (is_string($array)) {
             $array = str_split(rtrim($array, chr(10) . chr(13) . "\n" . "\r"), 1);
         }
@@ -766,8 +734,7 @@ final class Util
      * @return array
      * @throws \Exception
      */
-    public static function adiciona(&$line, $i, $f, $value)
-    {
+    public static function adiciona(&$line, $i, $f, $value) {
         $i--;
 
         if ($i > 398 || $f > 400) {
@@ -796,8 +763,7 @@ final class Util
      * @param $content
      * @return bool
      */
-    public static function isCnab240($content)
-    {
+    public static function isCnab240($content) {
         $content = is_array($content) ? $content[0] : $content;
         return mb_strlen(rtrim($content, "\r\n")) == 240 ? true : false;
     }
@@ -808,8 +774,7 @@ final class Util
      * @param $content
      * @return bool
      */
-    public static function isCnab400($content)
-    {
+    public static function isCnab400($content) {
         $content = is_array($content) ? $content[0] : $content;
         return mb_strlen(rtrim($content, "\r\n")) == 400 ? true : false;
     }
@@ -818,8 +783,7 @@ final class Util
      * @param $file
      * @return array|bool
      */
-    public static function file2array($file)
-    {
+    public static function file2array($file) {
         if (is_array($file) && isset($file[0]) && is_string($file[0])) {
             return $file;
         } elseif (is_string($file) && is_file($file) && file_exists($file)) {
@@ -841,8 +805,7 @@ final class Util
      * @param $header
      * @return bool
      */
-    public static function isHeaderRetorno($header)
-    {
+    public static function isHeaderRetorno($header) {
         if (!self::isCnab240($header) && !self::isCnab400($header)) {
             return false;
         }
@@ -859,8 +822,7 @@ final class Util
      * @param $obj
      * @param array $params
      */
-    public static function fillClass(&$obj, array $params)
-    {
+    public static function fillClass(&$obj, array $params) {
         foreach ($params as $param => $value) {
             $param = str_replace(' ', '', ucwords(str_replace('_', ' ', $param)));
             if (method_exists($obj, 'getProtectedFields') && in_array(lcfirst($param), $obj->getProtectedFields())) {
@@ -878,9 +840,8 @@ final class Util
      * @return Pessoa
      * @throws \Exception
      */
-    public static function addPessoa(&$property, $obj)
-    {
-        if (is_subclass_of($obj, 'Newerton\\Yii2Boleto\\Contracts\\Pessoa')) {
+    public static function addPessoa(&$property, $obj) {
+        if (is_subclass_of($obj, 'ACSToigo\\Contracts\\Pessoa')) {
             $property = $obj;
             return $obj;
         } elseif (is_array($obj)) {
@@ -890,4 +851,5 @@ final class Util
         }
         throw new \Exception('Objeto inválido, somente Pessoa e Array');
     }
+
 }

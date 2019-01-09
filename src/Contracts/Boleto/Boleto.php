@@ -1,10 +1,11 @@
 <?php
-namespace Newerton\Yii2Boleto\Contracts\Boleto;
 
-use Newerton\Yii2Boleto\Contracts\Pessoa as PessoaContract;
+namespace ACSToigo\Contracts\Boleto;
 
-interface Boleto
-{
+use ACSToigo\Contracts\Pessoa as PessoaContract;
+
+interface Boleto {
+
     const COD_BANCO_BB = '001';
     const COD_BANCO_SANTANDER = '033';
     const COD_BANCO_CEF = '104';
@@ -15,7 +16,6 @@ interface Boleto
     const COD_BANCO_BANRISUL = '041';
     const COD_BANCO_BANCOOB = '756';
     const COD_BANCO_BNB = '004';
-
     const STATUS_REGISTRO = 1;
     const STATUS_ALTERACAO = 2;
     const STATUS_BAIXA = 3;

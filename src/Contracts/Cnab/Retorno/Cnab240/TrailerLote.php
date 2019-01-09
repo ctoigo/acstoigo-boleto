@@ -1,9 +1,9 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240;
+namespace ACSToigo\Contracts\Cnab\Retorno\Cnab240;
 
-interface TrailerLote
-{
+interface TrailerLote {
+
     /**
      * @return mixed
      */

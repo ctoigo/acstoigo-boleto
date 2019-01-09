@@ -1,17 +1,15 @@
 <?php
-namespace Newerton\Yii2Boleto\Cnab\Retorno;
 
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Detalhe as Detalhe240Contract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Header as Header240Contract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Trailer as Trailer240Contract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab400\Detalhe as Detalhe400Contract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab400\Trailer as Trailer400Contract;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab400\Header as Header400Contract;
-use Newerton\Yii2Boleto\Support\Collection;
-use Newerton\Yii2Boleto\Util;
+namespace ACSToigo\Cnab\Retorno;
 
-abstract class AbstractRetorno implements \Countable, \SeekableIterator
-{
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Detalhe as Detalhe240Contract;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Header as Header240Contract;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Trailer as Trailer240Contract;
+use ACSToigo\Support\Collection;
+use ACSToigo\Util;
+
+abstract class AbstractRetorno implements \Countable, \SeekableIterator {
+
     /**
      * Se Cnab ja foi processado
      *
@@ -41,17 +39,17 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
     protected $file;
 
     /**
-     * @var Header240Contract|Header400Contract
+     * @var Header240Contract
      */
     protected $header;
 
     /**
-     * @var Trailer240Contract|Trailer400Contract
+     * @var Trailer240Contract
      */
     protected $trailer;
 
     /**
-     * @var Detalhe240Contract[]|Detalhe400Contract[]
+     * @var Detalhe240Contract[]
      */
     protected $detalhe = [];
 
@@ -72,15 +70,14 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
      * @param String $file
      * @throws \Exception
      */
-    public function __construct($file)
-    {
+    public function __construct($file) {
         $this->_position = 1;
 
         if (!$this->file = Util::file2array($file)) {
             throw new \Exception("Arquivo: não existe");
         }
 
-        $r = new \ReflectionClass('\Newerton\Yii2Boleto\Contracts\Boleto\Boleto');
+        $r = new \ReflectionClass('\ACSToigo\Contracts\Boleto\Boleto');
         $constantNames = $r->getConstants();
         $bancosDisponiveis = [];
         foreach ($constantNames as $constantName => $codigoBanco) {
@@ -104,60 +101,53 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
      *
      * @return string
      */
-    public function getCodigoBanco()
-    {
+    public function getCodigoBanco() {
         return $this->codigoBanco;
     }
 
     /**
      * @return mixed
      */
-    public function getBancoNome()
-    {
+    public function getBancoNome() {
         return Util::$bancos[$this->codigoBanco];
     }
 
     /**
      * @return Collection
      */
-    public function getDetalhes()
-    {
+    public function getDetalhes() {
         return new Collection($this->detalhe);
     }
 
     /**
      * @param $i
      *
-     * @return Detalhe240Contract[]|Detalhe400Contract[]
+     * @return Detalhe240Contract[]
      */
-    public function getDetalhe($i)
-    {
+    public function getDetalhe($i) {
         return array_key_exists($i, $this->detalhe) ? $this->detalhe[$i] : null;
     }
 
     /**
-     * @return Header240Contract|Header400Contract
+     * @return Header240Contract
      */
-    public function getHeader()
-    {
+    public function getHeader() {
         return $this->header;
     }
 
     /**
-     * @return Trailer240Contract|Trailer400Contract
+     * @return Trailer240Contract
      */
-    public function getTrailer()
-    {
+    public function getTrailer() {
         return $this->trailer;
     }
 
     /**
      * Retorna o detalhe atual.
      *
-     * @return Detalhe240Contract|Detalhe400Contract
+     * @return Detalhe240Contract
      */
-    protected function detalheAtual()
-    {
+    protected function detalheAtual() {
         return $this->detalhe[$this->increment];
     }
 
@@ -166,8 +156,7 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
      *
      * @return bool
      */
-    protected function isProcessado()
-    {
+    protected function isProcessado() {
         return $this->processado;
     }
 
@@ -176,8 +165,7 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
      *
      * @return $this
      */
-    protected function setProcessado()
-    {
+    protected function setProcessado() {
         $this->processado = true;
         return $this;
     }
@@ -211,47 +199,39 @@ abstract class AbstractRetorno implements \Countable, \SeekableIterator
      * @return string
      * @throws \Exception
      */
-    protected function rem($i, $f, &$array)
-    {
+    protected function rem($i, $f, &$array) {
         return Util::remove($i, $f, $array);
     }
 
-
-    public function current()
-    {
+    public function current() {
         return $this->detalhe[$this->_position];
     }
 
-    public function next()
-    {
+    public function next() {
         ++$this->_position;
     }
 
-    public function key()
-    {
+    public function key() {
         return $this->_position;
     }
 
-    public function valid()
-    {
+    public function valid() {
         return isset($this->detalhe[$this->_position]);
     }
 
-    public function rewind()
-    {
+    public function rewind() {
         $this->_position = 1;
     }
 
-    public function count()
-    {
+    public function count() {
         return count($this->detalhe);
     }
 
-    public function seek($position)
-    {
+    public function seek($position) {
         $this->_position = $position;
         if (!$this->valid()) {
             throw new \OutOfBoundsException('"Posição inválida "$position"');
         }
     }
+
 }

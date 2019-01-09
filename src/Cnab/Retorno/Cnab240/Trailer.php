@@ -1,13 +1,14 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Cnab\Retorno\Cnab240;
+namespace ACSToigo\Cnab\Retorno\Cnab240;
 
-use \Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Trailer as TrailerContract;
-use Newerton\Yii2Boleto\Traits\MagicTrait;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Trailer as TrailerContract;
+use ACSToigo\Traits\MagicTrait;
 
-class Trailer implements TrailerContract
-{
+class Trailer implements TrailerContract {
+
     use MagicTrait;
+
     /**
      * @var integer
      */
@@ -31,8 +32,7 @@ class Trailer implements TrailerContract
     /**
      * @return mixed
      */
-    public function getTipoRegistro()
-    {
+    public function getTipoRegistro() {
         return $this->tipoRegistro;
     }
 
@@ -41,8 +41,7 @@ class Trailer implements TrailerContract
      *
      * @return $this
      */
-    public function setNumeroLote($numeroLote)
-    {
+    public function setNumeroLote($numeroLote) {
         $this->numeroLote = $numeroLote;
 
         return $this;
@@ -51,8 +50,7 @@ class Trailer implements TrailerContract
     /**
      * @return mixed
      */
-    public function getNumeroLoteRemessa()
-    {
+    public function getNumeroLoteRemessa() {
         return $this->numeroLote;
     }
 
@@ -61,8 +59,7 @@ class Trailer implements TrailerContract
      *
      * @return $this
      */
-    public function setQtdLotesArquivo($qtdLotesArquivo)
-    {
+    public function setQtdLotesArquivo($qtdLotesArquivo) {
         $this->qtdLotesArquivo = $qtdLotesArquivo;
 
         return $this;
@@ -71,8 +68,7 @@ class Trailer implements TrailerContract
     /**
      * @return mixed
      */
-    public function getQtdLotesArquivo()
-    {
+    public function getQtdLotesArquivo() {
         return $this->qtdLotesArquivo;
     }
 
@@ -81,8 +77,7 @@ class Trailer implements TrailerContract
      *
      * @return $this
      */
-    public function setQtdRegistroArquivo($qtdRegistroArquivo)
-    {
+    public function setQtdRegistroArquivo($qtdRegistroArquivo) {
         $this->qtdRegistroArquivo = $qtdRegistroArquivo;
 
         return $this;
@@ -91,8 +86,7 @@ class Trailer implements TrailerContract
     /**
      * @return mixed
      */
-    public function getQtdRegistroArquivo()
-    {
+    public function getQtdRegistroArquivo() {
         return $this->qtdRegistroArquivo;
     }
 
@@ -101,10 +95,10 @@ class Trailer implements TrailerContract
      *
      * @return $this
      */
-    public function setTipoRegistro($tipoRegistro)
-    {
+    public function setTipoRegistro($tipoRegistro) {
         $this->tipoRegistro = $tipoRegistro;
 
         return $this;
     }
+
 }

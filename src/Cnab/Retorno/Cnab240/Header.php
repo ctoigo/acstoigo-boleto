@@ -1,14 +1,15 @@
 <?php
 
-namespace Newerton\Yii2Boleto\Cnab\Retorno\Cnab240;
+namespace ACSToigo\Cnab\Retorno\Cnab240;
 
 use Carbon\Carbon;
-use Newerton\Yii2Boleto\Contracts\Cnab\Retorno\Cnab240\Header as HeaderContract;
-use Newerton\Yii2Boleto\Traits\MagicTrait;
+use ACSToigo\Contracts\Cnab\Retorno\Cnab240\Header as HeaderContract;
+use ACSToigo\Traits\MagicTrait;
 
-class Header implements HeaderContract
-{
+class Header implements HeaderContract {
+
     use MagicTrait;
+
     /**
      * @var integer
      */
@@ -48,6 +49,7 @@ class Header implements HeaderContract
      * @var string
      */
     protected $agencia;
+
     /**
      * @var string
      */
@@ -101,8 +103,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getLoteServico()
-    {
+    public function getLoteServico() {
         return $this->loteServico;
     }
 
@@ -111,8 +112,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setLoteServico($loteServico)
-    {
+    public function setLoteServico($loteServico) {
         $this->loteServico = $loteServico;
 
         return $this;
@@ -121,8 +121,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getTipoRegistro()
-    {
+    public function getTipoRegistro() {
         return $this->tipoRegistro;
     }
 
@@ -131,8 +130,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setTipoRegistro($tipoRegistro)
-    {
+    public function setTipoRegistro($tipoRegistro) {
         $this->tipoRegistro = $tipoRegistro;
 
         return $this;
@@ -141,8 +139,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getTipoInscricao()
-    {
+    public function getTipoInscricao() {
         return $this->tipoInscricao;
     }
 
@@ -151,8 +148,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setTipoInscricao($tipoInscricao)
-    {
+    public function setTipoInscricao($tipoInscricao) {
         $this->tipoInscricao = $tipoInscricao;
 
         return $this;
@@ -161,8 +157,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getAgencia()
-    {
+    public function getAgencia() {
         return $this->agencia;
     }
 
@@ -171,8 +166,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setAgencia($agencia)
-    {
+    public function setAgencia($agencia) {
         $this->agencia = ltrim(trim($agencia, ' '), '0');
 
         return $this;
@@ -181,8 +175,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getAgenciaDv()
-    {
+    public function getAgenciaDv() {
         return $this->agenciaDv;
     }
 
@@ -191,8 +184,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setAgenciaDv($agenciaDv)
-    {
+    public function setAgenciaDv($agenciaDv) {
         $this->agenciaDv = $agenciaDv;
 
         return $this;
@@ -201,8 +193,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getNomeEmpresa()
-    {
+    public function getNomeEmpresa() {
         return $this->nomeEmpresa;
     }
 
@@ -211,8 +202,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setNomeEmpresa($nomeEmpresa)
-    {
+    public function setNomeEmpresa($nomeEmpresa) {
         $this->nomeEmpresa = $nomeEmpresa;
 
         return $this;
@@ -221,8 +211,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getHoraGeracao()
-    {
+    public function getHoraGeracao() {
         return $this->horaGeracao;
     }
 
@@ -231,8 +220,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setHoraGeracao($horaGeracao)
-    {
+    public function setHoraGeracao($horaGeracao) {
         $this->horaGeracao = $horaGeracao;
 
         return $this;
@@ -241,8 +229,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getNumeroSequencialArquivo()
-    {
+    public function getNumeroSequencialArquivo() {
         return $this->numeroSequencialArquivo;
     }
 
@@ -251,8 +238,7 @@ class Header implements HeaderContract
      * @param string $numeroSequencialArquivo
      * @return $this
      */
-    public function setNumeroSequencialArquivo($numeroSequencialArquivo)
-    {
+    public function setNumeroSequencialArquivo($numeroSequencialArquivo) {
         $this->numeroSequencialArquivo = $numeroSequencialArquivo;
 
         return $this;
@@ -261,8 +247,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getVersaoLayoutArquivo()
-    {
+    public function getVersaoLayoutArquivo() {
         return $this->versaoLayoutArquivo;
     }
 
@@ -271,8 +256,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setVersaoLayoutArquivo($versaoLayoutArquivo)
-    {
+    public function setVersaoLayoutArquivo($versaoLayoutArquivo) {
         $this->versaoLayoutArquivo = $versaoLayoutArquivo;
 
         return $this;
@@ -281,8 +265,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getNumeroInscricao()
-    {
+    public function getNumeroInscricao() {
         return $this->numeroInscricao;
     }
 
@@ -291,8 +274,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setNumeroInscricao($numeroInscricao)
-    {
+    public function setNumeroInscricao($numeroInscricao) {
         $this->numeroInscricao = $numeroInscricao;
 
         return $this;
@@ -301,8 +283,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getConta()
-    {
+    public function getConta() {
         return $this->conta;
     }
 
@@ -311,8 +292,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setConta($conta)
-    {
+    public function setConta($conta) {
         $this->conta = ltrim(trim($conta, ' '), '0');
 
         return $this;
@@ -321,8 +301,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getContaDv()
-    {
+    public function getContaDv() {
         return $this->contaDv;
     }
 
@@ -331,8 +310,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setContaDv($contaDv)
-    {
+    public function setContaDv($contaDv) {
         $this->contaDv = $contaDv;
 
         return $this;
@@ -341,8 +319,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getCodigoCedente()
-    {
+    public function getCodigoCedente() {
         return $this->codigoCedente;
     }
 
@@ -351,8 +328,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setCodigoCedente($codigoCedente)
-    {
+    public function setCodigoCedente($codigoCedente) {
         $this->codigoCedente = $codigoCedente;
 
         return $this;
@@ -363,11 +339,8 @@ class Header implements HeaderContract
      *
      * @return string
      */
-    public function getData($format = 'd/m/Y')
-    {
-        return $this->data instanceof Carbon
-            ? $format === false ? $this->data : $this->data->format($format)
-            : null;
+    public function getData($format = 'd/m/Y') {
+        return $this->data instanceof Carbon ? $format === false ? $this->data : $this->data->format($format) : null;
     }
 
     /**
@@ -377,8 +350,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setData($data, $format = 'dmY')
-    {
+    public function setData($data, $format = 'dmY') {
         $this->data = trim($data, '0 ') ? Carbon::createFromFormat($format, $data) : null;
 
         return $this;
@@ -387,8 +359,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getConvenio()
-    {
+    public function getConvenio() {
         return $this->convenio;
     }
 
@@ -397,8 +368,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setConvenio($convenio)
-    {
+    public function setConvenio($convenio) {
         $this->convenio = $convenio;
 
         return $this;
@@ -407,8 +377,7 @@ class Header implements HeaderContract
     /**
      * @return int
      */
-    public function getCodBanco()
-    {
+    public function getCodBanco() {
         return $this->codBanco;
     }
 
@@ -417,8 +386,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setCodBanco($codBanco)
-    {
+    public function setCodBanco($codBanco) {
         $this->codBanco = $codBanco;
 
         return $this;
@@ -427,8 +395,7 @@ class Header implements HeaderContract
     /**
      * @return int
      */
-    public function getCodigoRemessaRetorno()
-    {
+    public function getCodigoRemessaRetorno() {
         return $this->codigoRemessaRetorno;
     }
 
@@ -437,8 +404,7 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setCodigoRemessaRetorno($codigoRemessaRetorno)
-    {
+    public function setCodigoRemessaRetorno($codigoRemessaRetorno) {
         $this->codigoRemessaRetorno = $codigoRemessaRetorno;
 
         return $this;
@@ -447,8 +413,7 @@ class Header implements HeaderContract
     /**
      * @return string
      */
-    public function getNomeBanco()
-    {
+    public function getNomeBanco() {
         return $this->nomeBanco;
     }
 
@@ -457,10 +422,10 @@ class Header implements HeaderContract
      *
      * @return $this
      */
-    public function setNomeBanco($nomeBanco)
-    {
+    public function setNomeBanco($nomeBanco) {
         $this->nomeBanco = $nomeBanco;
 
         return $this;
     }
+
 }
