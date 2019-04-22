@@ -2,9 +2,8 @@
 
 namespace ACSToigo\Boleto\Render;
 
-use fpdf\FPDF;
 
-abstract class AbstractPdf extends FPDF {
+abstract class AbstractPdf extends  {
 
     protected $javascript;
     protected $n_js;
