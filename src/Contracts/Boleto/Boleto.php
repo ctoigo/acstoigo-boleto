@@ -21,15 +21,6 @@ interface Boleto {
     const STATUS_BAIXA = 3;
 
     /**
-     * Render PDF.
-     *
-     * @param bool $print
-     *
-     * @return mixed
-     */
-    public function renderPDF($print = false);
-
-    /**
      * Return boleto as a Array.
      *
      * @return array

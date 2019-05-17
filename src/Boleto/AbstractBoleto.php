@@ -2,9 +2,9 @@
 
 namespace ACSToigo\Boleto;
 
+use Spipu\Html2Pdf\Html2Pdf;
 use Carbon\Carbon;
 use ACSToigo\Boleto\Render\Html;
-use ACSToigo\Boleto\Render\Pdf;
 use ACSToigo\Contracts\Pessoa as PessoaContract;
 use ACSToigo\Contracts\Boleto\Boleto as BoletoContract;
 use ACSToigo\Util;
@@ -1332,24 +1332,6 @@ abstract class AbstractBoleto implements BoletoContract {
     }
 
     /**
-     * Render PDF
-     *
-     * @param bool $print
-     * @param bool $instrucoes
-     * @return string
-     */
-    public function renderPDF($print = false, $instrucoes = true) {
-        $pdf = new Pdf();
-        $pdf->addBoleto($this);
-        if ($print)
-            $pdf->showPrint();
-        if (!$instrucoes)
-            $pdf->hideInstrucoes();
-
-        return $pdf->gerarBoleto('S', null);
-    }
-
-    /**
      * Render HTML
      *
      * @param bool $print
@@ -1364,7 +1346,10 @@ abstract class AbstractBoleto implements BoletoContract {
         if (!$instrucoes)
             $html->hideInstrucoes();
 
-        return $html->gerarBoleto();
+        $html2pdf = new Html2Pdf();
+        $html2pdf->writeHTML($html->gerarBoleto());
+
+        return $html2pdf->output();
     }
 
     /**
