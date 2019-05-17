@@ -1338,13 +1338,15 @@ abstract class AbstractBoleto implements BoletoContract {
      * @param bool $instrucoes
      * @return string
      */
-    public function renderHTML($print = false, $instrucoes = true) {
+    public function renderHTML($print = false, $instrucoes = false, $comprovante = true) {
         $html = new Html();
         $html->addBoleto($this);
         if ($print)
             $html->showPrint();
         if (!$instrucoes)
             $html->hideInstrucoes();
+        if ($comprovante)
+            $html->showComprovante();
 
         return $html->gerarBoleto();
     }
