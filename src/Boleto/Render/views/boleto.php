@@ -157,7 +157,7 @@
             <div class="info-empresa">
                 <?php if ($logo): ?>
                     <div style="display: inline-block;">
-                        <img alt="logo" src="<?php echo $logo_base64; ?>"/>
+                        <img alt="logo" width="80px;" src="<?php echo $logo_base64; ?>"/>
                     </div>
                 <?php endif; ?>
                 <div style="display: inline-block; vertical-align: super;">
