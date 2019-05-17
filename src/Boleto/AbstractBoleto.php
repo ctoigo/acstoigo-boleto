@@ -1346,10 +1346,7 @@ abstract class AbstractBoleto implements BoletoContract {
         if (!$instrucoes)
             $html->hideInstrucoes();
 
-        $html2pdf = new Html2Pdf();
-        $html2pdf->writeHTML($html->gerarBoleto());
-
-        return $html2pdf->output();
+        return $html->gerarBoleto();
     }
 
     /**
