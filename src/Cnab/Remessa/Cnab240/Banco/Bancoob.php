@@ -2,6 +2,7 @@
 
 namespace ACSToigo\Cnab\Remessa\Cnab240\Banco;
 
+use ACSToigo\CalculoDV;
 use ACSToigo\Cnab\Remessa\Cnab240\AbstractRemessa;
 use ACSToigo\Contracts\Cnab\Remessa as RemessaContract;
 use ACSToigo\Contracts\Boleto\Boleto as BoletoContract;
