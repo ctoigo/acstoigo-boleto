@@ -2,10 +2,9 @@
 
 namespace ACSToigo\Cnab\Remessa\Cnab240\Banco;
 
-use ACSToigo\CalculoDV;
 use ACSToigo\Cnab\Remessa\Cnab240\AbstractRemessa;
-use ACSToigo\Contracts\Cnab\Remessa as RemessaContract;
-use ACSToigo\Contracts\Boleto\Boleto as BoletoContract;
+use ACSToigo\Cnab\Remessa as RemessaContract;
+use ACSToigo\Contracts\Boleto as BoletoContract;
 use ACSToigo\Util;
 
 /**
@@ -178,7 +177,7 @@ class Bancoob extends AbstractRemessa implements RemessaContract {
         $this->add(19, 32, Util::formatCnab('9L', $this->getBeneficiario()->getNomeDocumento(), 14));
         $this->add(33, 52, '');
         $this->add(53, 57, Util::formatCnab('9', $this->getAgencia(), 5));
-        $this->add(58, 58, CalculoDV::bancoobAgencia($this->getAgencia()));
+        $this->add(58, 58, CalculoDv::bancoobAgencia($this->getAgencia()));
         $this->add(59, 70, Util::formatCnab('9', $this->getConta(), 12));
         $this->add(71, 71, Util::formatCnab('9', $this->getContaDv(), 1));
         $this->add(72, 72, '0');
