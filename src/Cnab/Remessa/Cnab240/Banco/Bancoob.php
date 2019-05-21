@@ -428,7 +428,7 @@ class Bancoob extends AbstractRemessa implements RemessaContract {
         $this->add(4, 7, '0001'); // Numero do lote remessa
         $this->add(8, 8, '5'); //Tipo de registro
         $this->add(9, 17, ''); // Reservado (Uso Banco)
-        $this->add(18, 23, Util::formatCnab(9, $this->qtyRegistrosLote, 6)); // Qtd de lotes do arquivo
+        $this->add(18, 23, Util::formatCnab(9, $this->qtyRegistrosLote + 2, 6)); // Qtd de lotes do arquivo
         $this->add(24, 29, Util::formatCnab(9, ($this->qtyRegistrosLote + 4), 6)); // Qtd de lotes do arquivo
         $this->add(30, 46, Util::formatCnab(9, ($this->valorTotalTitulos * 100), 17, 2));
         $this->add(47, 115, Util::formatCnab(9, 0, 69)); // Qtd de lotes do arquivo
