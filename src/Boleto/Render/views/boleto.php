@@ -29,8 +29,6 @@
     <?php endif; ?>
 
     <?php if ($mostrar_comprovante): ?>
-        <?php echo $this->render('html/header', ['css' => $css]); ?>
-
         <?php foreach ($boletos as $i => $boleto): ?>
             <?php extract($boleto); ?>
             <?php if ($mostrar_instrucoes): ?>
@@ -295,8 +293,6 @@
                 <div style="page-break-before:always"></div>
             <?php endif; ?>
         <?php endforeach; ?>
-
-        <?php echo $this->render('html/footer', ['imprimir_carregamento' => $imprimir_carregamento]); ?>
     <?php endif; ?>
 
 <?php endforeach; ?>
