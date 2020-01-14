@@ -30,7 +30,7 @@
         "ext-intl": "*",
         "ext-mbstring": "*",
         "nesbot/carbon": "^1.26.3 || ^2.0",
-        "spipu/html2pdf": "^5.2"
+        "fpdf/fpdf": "^1.81"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.8",
