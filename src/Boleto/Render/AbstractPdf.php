@@ -67,8 +67,8 @@ abstract class AbstractPdf extends Fpdf {
         return $this->CurrPageGroup;
     }
 
-    public function _beginpage($orientation, $size) {
-        parent::_beginpage($orientation, $size);
+    public function _beginpage($orientation, $size, $rotation) {
+        parent::_beginpage($orientation, $size, $rotation);
         if ($this->NewPageGroup) {
             $n = sizeof($this->PageGroups) + 1;
             $alias = '{' . $n . '}';
