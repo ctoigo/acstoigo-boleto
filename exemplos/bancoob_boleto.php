@@ -55,4 +55,10 @@ $boleto = new \ACSToigo\Boleto\Banco\Bancoob(
         ]
 );
 
-$boleto->renderHTML();
+$boleto-
+header('Content-type: application/pdf');
+echo $boleto->renderPDF(
+        $print = false, 
+        $instrucoes = false, 
+        $comprovante = true
+);
