@@ -721,7 +721,12 @@ final class Util {
 
         $t = $f - $i;
         $toSplice = $array;
-        return trim(implode('', array_splice($toSplice, $i, $t)));
+
+        if ($toSplice == null) {
+            return "";
+        } else {
+            return trim(implode('', array_splice($toSplice, $i, $t)));
+        }
     }
 
     /**

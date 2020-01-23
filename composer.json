@@ -30,7 +30,8 @@
         "ext-intl": "*",
         "ext-mbstring": "*",
         "nesbot/carbon": "^1.26.3 || ^2.0",
-        "fpdf/fpdf": "^1.81"
+        "fpdf/fpdf": "^1.81",
+        "phannaly/laravel-helpers": "^1.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.8",
