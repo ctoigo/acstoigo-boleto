@@ -1,6 +1,6 @@
 <?php
 
-namespace ACSToigo\Boleto;
+namespace ACSToigo\BancoInter;
 
 class BancoInterException extends \Exception {
 
