@@ -1,6 +1,6 @@
 <?php
 
-namespace ACSToigo\Boleto\Cobranca;
+namespace ACSToigo\BancoInter\Cobranca;
 
 use ACSToigo\BancoInter\BancoInter;
 

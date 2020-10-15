@@ -2,7 +2,7 @@
 
 namespace ACSToigo\BancoInter;
 
-use ACSToigo\Boleto\Cobranca\Boleto;
+use ACSToigo\BancoInter\Cobranca\Boleto;
 
 define("INTER_BAIXA_ACERTOS", "ACERTOS");
 define("INTER_BAIXA_PROTESTADO", "PROTESTADO");

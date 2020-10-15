@@ -1,6 +1,6 @@
 <?php
 
-namespace ACSToigo\Boleto\Cobranca;
+namespace ACSToigo\BancoInter\Cobranca;
 
 class Mora implements \JsonSerializable {
 
