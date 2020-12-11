@@ -27,7 +27,7 @@ define("INTER_ORDEM_STATUS_DESC", "STATUS_DSC");
 
 class BancoInter {
 
-    private $apiBaseURL = "https://apis.bancointer.com.br:8443";
+    private $apiBaseURL = "https://apis.bancointer.com.br";
     private $accountNumber = null;
     private $certificateFile = null;
     private $keyFile = null;
