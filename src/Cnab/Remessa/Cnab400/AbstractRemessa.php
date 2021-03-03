@@ -1,6 +1,6 @@
 <?php
 
-namespace ACSToigo\Cnab\Remessa\Cnab240;
+namespace ACSToigo\Cnab\Remessa\Cnab400;
 
 use ACSToigo\Cnab\Remessa\AbstractRemessa as AbstractRemessaGeneric;
 
