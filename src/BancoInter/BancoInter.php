@@ -27,7 +27,7 @@ define("INTER_ORDEM_STATUS_DESC", "STATUS_DSC");
 
 class BancoInter {
 
-    private $apiBaseURL = "https://apis.bancointer.com.br";
+    private $apiBaseURL = "https://cdpj.partners.bancointer.com.br";
     private $accountNumber = null;
     private $certificateFile = null;
     private $keyFile = null;
@@ -198,7 +198,7 @@ class BancoInter {
         // garante que o boleto tem um controller
         $boleto->setController($this);
 
-        $reply = $this->controllerPost("/openbanking/v1/certificado/boletos", $boleto);
+        $reply = $this->controllerPost("/cobranca/v2/boletos", $boleto);
 
         $replyData = json_decode($reply->body);
 
@@ -215,7 +215,7 @@ class BancoInter {
      * @return \stdClass
      */
     public function getBoleto(string $nossoNumero): \stdClass {
-        $reply = $this->controllerGet("/openbanking/v1/certificado/boletos/" . $nossoNumero);
+        $reply = $this->controllerGet("/cobranca/v2/boletos/" . $nossoNumero);
 
         $replyData = json_decode($reply->body);
 
@@ -239,7 +239,7 @@ class BancoInter {
             'accept: application/pdf',
         );
 
-        $reply = $this->controllerGet("/openbanking/v1/certificado/boletos/" . $nossoNumero . "/pdf", $http_params);
+        $reply = $this->controllerGet("/cobranca/v2/boletos/" . $nossoNumero . "/pdf", $http_params);
 
         $filename = tempnam($savePath, "boleto-inter-") . ".pdf";
         if (!file_put_contents($filename, base64_decode($reply->body))) {
@@ -253,7 +253,7 @@ class BancoInter {
         $data = new StdSerializable();
         $data->codigoBaixa = $motivo;
 
-        $reply = $this->controllerPost("/openbanking/v1/certificado/boletos/" . $nossoNumero . "/baixas", $data);
+        $reply = $this->controllerPost("/cobranca/v2/boletos/" . $nossoNumero . "/cancelar", $data);
 
         $replyData = json_decode($reply->body);
 
@@ -280,7 +280,7 @@ class BancoInter {
             $ordem = "NOSSONUMERO"
     ): \stdClass {
 
-        $url = "/openbanking/v1/certificado/boletos";
+        $url = "/cobranca/v2/boletos/sumario";
         $url .= "?filtrarPor=" . $filtro;
         $url .= "&dataInicial=" . $dataInicial;
         $url .= "&dataFinal=" . $dataFinal;
